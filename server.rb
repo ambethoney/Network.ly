@@ -26,6 +26,13 @@ module ProjectDashboard
     end
 
     get '/home' do
+      # if you want your vars you made in you call back to be available here,
+      # you need to put them in your session, and then get them out
+      @name = session[:f_name]
+      # where is @contacts coming from? why call redis method on it? PJ
+      # @all_contacts = @contacts.lrange "contacts_list#{@name}", 0, -1
+      # binding.pry
+
       render :erb, :home, layout: :default
 
     end
@@ -48,9 +55,7 @@ module ProjectDashboard
       session[:access_token] = response["access_token"]
       get_user_info
       get_contact_info
-      @name = session[:f_name]
-      @all_contacts = @contacts.lrange "contacts_list#{@name}", 0, -1
-      # binding.pry
+
       redirect('/home')
     end
 
