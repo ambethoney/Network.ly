@@ -7,6 +7,7 @@ require 'sinatra/reloader'
 
 require_relative 'server'
 require_relative 'databasehelper'
+require_relative 'contacts'
 
 run ProjectDashboard::Server
 

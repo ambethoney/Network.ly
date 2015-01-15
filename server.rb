@@ -27,11 +27,12 @@ module ProjectDashboard
 
     get '/home' do
       render :erb, :home, layout: :default
+
     end
 
     get('/linkedin/oauth_callback') do
       response = HTTParty.post(
-        "https://www.linkedin.com/uas/oauth2/accessToken?",
+        "https://www.linkedin.com/uas/oauth2/accessToken",
         :body => {
           :grant_type     => "authorization_code",
           :code           => params[:code],
@@ -45,10 +46,18 @@ module ProjectDashboard
       )
 
       session[:access_token] = response["access_token"]
-binding.pry
-      @get_user_info
+      get_user_info
+      @name = session[:f_name]
+      @all_contacts = @contacts .lrange "contacts_list#{@name}", 0, -1
+      # binding.pry
       redirect('/home')
     end
+
+    get('/logout') do
+      session[:name] = session[:access_token] = nil # dual assignment!
+      redirect to("/")
+    end
+
 
   end #ends Server
 end #ends ProjectDashboard

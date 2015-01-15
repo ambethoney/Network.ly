@@ -1,8 +1,14 @@
 <button><a href="/">Log Out</a></button>
 
-
-
-
-
+<h2>Welcome Back, <%= @name %> !</h2>
 <button> View Your Contacts </button>
+
+
+<h4>All Contacts: </h4>
+<ul>
+  <% @all_contacts.each do |c| %>
+  <li> <%= c %> </li>
+  <% end %>
+</ul>
+
 
