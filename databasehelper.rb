@@ -17,7 +17,7 @@ module ProjectDashboard
       session[:f_name]      = response["firstName"]
       session[:l_name]      = response["lastName"]
       session[:provider]    = "LinkedIn"
-      @name                 = session[:f_name]
+
     end
 
     def get_contact_info

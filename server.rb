@@ -47,11 +47,23 @@ module ProjectDashboard
 
       session[:access_token] = response["access_token"]
       get_user_info
+      get_contact_info
       @name = session[:f_name]
-      @all_contacts = @contacts .lrange "contacts_list#{@name}", 0, -1
+      @all_contacts = @contacts.lrange "contacts_list#{@name}", 0, -1
       # binding.pry
       redirect('/home')
     end
+
+    post('/home') do
+      id = $redis.incr("my_contacts")
+      $redis.hmset("contacts:#{id}",
+        "f_name", params["f_name"],
+        "l_name", params["l_name"],
+        "headline", params["headline"]
+        )
+        $redis.rpush("contacts_list", id)
+        redirect to '/home'
+      end
 
     get('/logout') do
       session[:name] = session[:access_token] = nil # dual assignment!
