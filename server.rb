@@ -1,17 +1,15 @@
-require_relative 'databasehelper'
-
-
 module ProjectDashboard
   class Server < Sinatra::Base
 
     enable :logging, :sessions
 
-    include DatabaseHelper
+    include LinkedinHelper
 
     configure :development do
       register Sinatra::Reloader
       require 'pry'
       require 'redis'
+      $redis = Redis.new
     end
 
     get('/') do
@@ -26,8 +24,8 @@ module ProjectDashboard
     end
 
     get '/home' do
-      ids = $redis.lrange("contacts_list", 0, -1)
-      @my_contacts = ids.map {|id| $redis.hgetall("user:#{id}")}
+      # get user's contacts from LinkedIn API
+      @contacts = get_contacts(session[:access_token])
       render :erb, :home, layout: :default
     end
 
@@ -45,8 +43,8 @@ module ProjectDashboard
         }
       )
       session[:access_token] = response["access_token"]
-      get_user_info
-      get_contact_info
+      session.merge! user_info(session[:access_token]) # put user info in session
+
       redirect('/home')
     end
 
@@ -66,5 +64,17 @@ module ProjectDashboard
       redirect to '/home'
     end
 
+    # TODO: change to query params to handle request_rul
+    get('/contact_info/:name') do
+      @info = get_contact_info(session[:access_token],params[:name])
+      binding.pry
+      render :erb, :contact, layout: :default
+    end
+
+    def authorize!
+      if session[:name] != params[:username]
+        redirect to('/')
+      end
+    end
   end #ends Server
 end #ends ProjectDashboard

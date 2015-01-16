@@ -6,8 +6,11 @@
 
 <h4>All Contacts: </h4>
 <ul>
-  <% @my_contacts.each do |c| %>
-  <li> <%= c[@contact_f_name] %></li>
+  <% @contacts.each do |contact| %>
+  <!-- TODO: link to each's contacts requestUrl -->
+  <li>
+    <a href="/contact_info/<%= contact[:api_name] %>"><%= contact[:name] %></a>
+  </li>
   <% end %>
 </ul>
 
