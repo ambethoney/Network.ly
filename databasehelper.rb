@@ -8,28 +8,27 @@ module ProjectDashboard
       end
 
       def get_user_info
-         response = HTTParty.get("https://api.linkedin.com/v1/people/~:(first-name,last-name,email-address)?format=json",
+        response = HTTParty.get("https://api.linkedin.com/v1/people/~:(first-name,last-name,email-address)?format=json",
         :headers => {
           "Authorization" => "Bearer #{session[:access_token]}"
-          }
-          )
-      session[:email]       = response["emailAddress"]
-      session[:f_name]      = response["firstName"]
-      session[:l_name]      = response["lastName"]
-      session[:provider]    = "LinkedIn"
-
-    end
+          })
+        session[:email_address]  = response["emailAddress"]
+        session[:first_name]     = response["firstName"]
+        session[:last_name]      = response["lastName"]
+        # session[:provider]     = "LinkedIn"
+      end
 
     def get_contact_info
       contact_info = HTTParty.get("https://api.linkedin.com/v1/people/~/connections:(headline,first-name,last-name,email-address)?format=json",
       :headers => {
         "Authorization" => "Bearer #{session[:access_token]}"
       })
-      # NONE OF THIS DOES JACK :) -- you already got this info
-      # session[:f_name]      = contact_info["firstName"]
-      # session[:l_name]      = contact_info["lastName"]
-      # session[:email]       = contact_info["emailAddress"]
-      # session[:headline]    = contact_info["headline"]
+binding.pry
+      @contact_f_name       = contact_info["values"]["firstName"]
+      @contact_l_name       = contact_info["values"]["lastName"]
+      @contact_email        = contact_info["values"]["emailAddress"]
+      @contact_headline     = contact_info["values"]["headline"]
+
       # session[:provider]    = "LinkedIn"
     end
 
@@ -39,11 +38,11 @@ module ProjectDashboard
           "Authorization" => "Bearer #{session[:access_token]}"
           }
       )
-          session[:recipients] = " "
-          session[:person]     = " "
-          session[:path]       = " "
-          session[:subject]    = " "
-          session[:body]       = " "
+     session[:recipients] = " "
+     session[:person]     = " "
+     session[:path]       = " "
+     session[:subject]    = " "
+     session[:body]       = " "
     end
 
 

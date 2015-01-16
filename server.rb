@@ -1,5 +1,6 @@
 require_relative 'databasehelper'
 
+
 module ProjectDashboard
   class Server < Sinatra::Base
 
@@ -13,11 +14,10 @@ module ProjectDashboard
       require 'redis'
     end
 
-
     get('/') do
       query_params = URI.encode_www_form({
         :response_type => "code",
-        :client_id     => ENV["LINKEDIN_OAUTH_ID"],
+        :client_id     =>  ENV["LINKEDIN_OAUTH_ID"],
         :state         => "DK8H7MSITBATCMT65839",
         :redirect_uri  => "http://localhost:9292/linkedin/oauth_callback"
         })
@@ -26,55 +26,45 @@ module ProjectDashboard
     end
 
     get '/home' do
-      # if you want your vars you made in you call back to be available here,
-      # you need to put them in your session, and then get them out
-      @name = session[:f_name]
-      # where is @contacts coming from? why call redis method on it? PJ
-      # @all_contacts = @contacts.lrange "contacts_list#{@name}", 0, -1
-      # binding.pry
-
+      ids = $redis.lrange("contacts_list", 0, -1)
+      @my_contacts = ids.map {|id| $redis.hgetall("user:#{id}")}
       render :erb, :home, layout: :default
-
     end
 
     get('/linkedin/oauth_callback') do
-      response = HTTParty.post(
-        "https://www.linkedin.com/uas/oauth2/accessToken",
-        :body => {
-          :grant_type     => "authorization_code",
-          :code           => params[:code],
-          :redirect_uri   => "http://localhost:9292/linkedin/oauth_callback",
-          :client_id      => ENV["LINKEDIN_OAUTH_ID"],
-          :client_secret  => ENV["LINKEDIN_OAUTH_SECRET"]
+      response = HTTParty.post("https://www.linkedin.com/uas/oauth2/accessToken",
+      :body => {
+        :grant_type     => "authorization_code",
+        :code           => params[:code],
+        :redirect_uri   => "http://localhost:9292/linkedin/oauth_callback",
+        :client_id      => ENV["LINKEDIN_OAUTH_ID"],
+        :client_secret  => ENV["LINKEDIN_OAUTH_SECRET"]
         },
-        :headers => {
-          "Accept"        => "application/json"
+      :headers => {
+       "Accept"        => "application/json"
         }
       )
-
       session[:access_token] = response["access_token"]
       get_user_info
       get_contact_info
-
       redirect('/home')
     end
-
-    post('/home') do
-      id = $redis.incr("my_contacts")
-      $redis.hmset("contacts:#{id}",
-        "f_name", params["f_name"],
-        "l_name", params["l_name"],
-        "headline", params["headline"]
-        )
-        $redis.rpush("contacts_list", id)
-        redirect to '/home'
-      end
 
     get('/logout') do
       session[:name] = session[:access_token] = nil # dual assignment!
       redirect to("/")
     end
 
+
+    post('/home') do
+      id = $redis.incr("every_contact")
+      $redis.hmset("contact:#{id}",
+        "f_name", params["f_name"],
+        "l_name", params["l_name"],
+        )
+      $redis.lpush("contacts_list", id)
+      redirect to '/home'
+    end
 
   end #ends Server
 end #ends ProjectDashboard

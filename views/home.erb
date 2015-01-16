@@ -1,14 +1,14 @@
 <button><a href="/">Log Out</a></button>
 
-<h2>Welcome Back, <%= @name %> !</h2>
+<h2>Welcome Back, <%= session[:first_name] %> !</h2>
 <button> View Your Contacts </button>
 
 
 <h4>All Contacts: </h4>
 <ul>
-  <%# @all_contacts.each do |c| %>
-  <li> <%#= c # PJ: YOU DIDN'T CREATE AN ALL_CONTACTS VAR IN THIS REQ %> </li>
-  <%# end %>
+  <% @my_contacts.each do |c| %>
+  <li> <%= c[@contact_f_name] %></li>
+  <% end %>
 </ul>
 
 
