@@ -23,11 +23,6 @@ module ProjectDashboard
         })
       @linkedin_auth_url = "https://www.linkedin.com/uas/oauth2/authorization?" + linkedin_query_params
 
-      # DRIBBBLE PARAMS
-      query_params = URI.encode_www_form({
-        :client_id     => ENV["DRIBBBLE_OAUTH_ID"],
-      })
-      @dribbble_auth_url = "https://dribbble.com/oauth/authorize?" + query_params
 
       render :erb, :index, layout: :index_layout
     end
@@ -35,6 +30,13 @@ module ProjectDashboard
     get '/home' do
       # get user's contacts from LinkedIn API
       @contacts = get_contacts(session[:access_token])
+
+
+      # DRIBBBLE PARAMS
+      query_params = URI.encode_www_form({
+        :client_id     => ENV["DRIBBBLE_OAUTH_ID"],
+      })
+      @dribbble_auth_url = "https://dribbble.com/oauth/authorize?" + query_params
       @dribbble_user_info = dribbble_user_info
       render :erb, :home, layout: :default
     end
@@ -73,7 +75,7 @@ module ProjectDashboard
       )
 
       session[:access_token] = response["access_token"]
-      binding.pry
+      session.merge! user_info(session[:access_token])
       redirect to('/home')
     end
 
