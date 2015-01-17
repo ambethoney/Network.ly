@@ -1,0 +1,75 @@
+body{
+  background-color: white;
+}
+
+h1, h2, h3, p, a{
+ font-family: 'Old Standard TT', serif;
+}
+
+a{
+  text-decoration: none;
+}
+
+li{
+  list-style-type: none;
+  padding:.5em;
+}
+
+/*NAV BAR*/
+
+.nav{
+  position:fixed;
+  padding:1em;
+}
+
+.nav li{
+  position: relative;
+  display: inline-block;
+}
+
+/*CONTAINER*/
+
+.container{
+  position: absolute;
+  top:5%;
+  width:95%;
+}
+
+.welcome{
+  position: relative;
+  text-align: center;
+  margin-top:3%;
+}
+
+.welcome h1{
+  font-size: 3em;
+}
+
+
+/*CONTACTS LIST*/
+
+.contacts_list{
+  position:relative;
+  top:55%;
+  right:40%;
+}
+
+.view_button{
+ box-shadow: 5px 5px 5px black;
+ position: relative;
+ margin-top:15%;
+ left:9%;
+ padding:.5em;
+}
+
+.all_contacts{
+  position: absolute;
+  margin-top: 19%;
+}
+
+/*DRIBBBLE*/
+
+.dribbble{
+  position: relative;
+  left:55%;
+}

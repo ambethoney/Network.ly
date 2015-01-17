@@ -4,6 +4,7 @@ module ProjectDashboard
     enable :logging, :sessions
 
     include LinkedinHelper
+    include DribbbleHelper
 
     configure :development do
       register Sinatra::Reloader
@@ -13,19 +14,28 @@ module ProjectDashboard
     end
 
     get('/') do
-      query_params = URI.encode_www_form({
+      # LINKEDIN PARAMS
+      linkedin_query_params = URI.encode_www_form({
         :response_type => "code",
         :client_id     =>  ENV["LINKEDIN_OAUTH_ID"],
         :state         => "DK8H7MSITBATCMT65839",
         :redirect_uri  => "http://localhost:9292/linkedin/oauth_callback"
         })
-      @linkedin_auth_url = "https://www.linkedin.com/uas/oauth2/authorization?" + query_params
-      render :erb, :index, layout: :default
+      @linkedin_auth_url = "https://www.linkedin.com/uas/oauth2/authorization?" + linkedin_query_params
+
+      # DRIBBBLE PARAMS
+      query_params = URI.encode_www_form({
+        :client_id     => ENV["DRIBBBLE_OAUTH_ID"],
+      })
+      @dribbble_auth_url = "https://dribbble.com/oauth/authorize?" + query_params
+
+      render :erb, :index, layout: :index_layout
     end
 
     get '/home' do
       # get user's contacts from LinkedIn API
       @contacts = get_contacts(session[:access_token])
+      @dribbble_user_info = dribbble_user_info
       render :erb, :home, layout: :default
     end
 
@@ -48,6 +58,25 @@ module ProjectDashboard
       redirect('/home')
     end
 
+
+    get("/dribbble/oauth_callback") do
+      response = HTTParty.post(
+        "https://dribbble.com/oauth/token",
+        :body => {
+          :code          => params[:code],
+          :client_id         => ENV["DRIBBBLE_OAUTH_ID"],
+          :client_secret     => ENV["DRIBBBLE_OAUTH_SECRET"],
+        },
+        :headers => {
+          "Accept" => "application/json"
+        }
+      )
+
+      session[:access_token] = response["access_token"]
+      binding.pry
+      redirect to('/home')
+    end
+
     get('/logout') do
       session[:name] = session[:access_token] = nil # dual assignment!
       redirect to("/")
@@ -67,8 +96,13 @@ module ProjectDashboard
     # TODO: change to query params to handle request_rul
     get('/contact_info/:name') do
       @info = get_contact_info(session[:access_token],params[:name])
-      binding.pry
+
       render :erb, :contact, layout: :default
+    end
+
+    get '/message' do
+      @linkedin_message = send_messages(session[:access_token])
+      render :erb, :message, layout: :default
     end
 
     def authorize!
@@ -78,3 +112,4 @@ module ProjectDashboard
     end
   end #ends Server
 end #ends ProjectDashboard
+

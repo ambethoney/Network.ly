@@ -6,6 +6,7 @@ require 'sinatra/base'
 require 'sinatra/reloader'
 
 require_relative 'linkedin_helper'
+require_relative 'dribbble_helper'
 require_relative 'server'
 
 

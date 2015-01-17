@@ -1,17 +1,40 @@
-<button><a href="/">Log Out</a></button>
 
-<h2>Welcome Back, <%= session[:first_name] %> !</h2>
-<button> View Your Contacts </button>
+<nav>
+  <ul>
+    <li><h5>Network.ly</h5></li>
+    <li><button><a href="/">Log Out</a></button></li>
+  </ul>
+</nav>
 
+<div class="container">
+  <div class="welcome">
+    <h1>Welcome Back, <%= session[:first_name] %>!</h1>
+  </end>
 
-<h4>All Contacts: </h4>
-<ul>
-  <% @contacts.each do |contact| %>
-  <!-- TODO: link to each's contacts requestUrl -->
-  <li>
-    <a href="/contact_info/<%= contact[:api_name] %>"><%= contact[:name] %></a>
-  </li>
-  <% end %>
-</ul>
+  <div class="contacts_list">
+    <button class="view_button"> View Your Contacts </button>
+    <span class="all_contacts">
+      <h4>All Contacts: </h4>
+      <ul>
+        <% @contacts.each do |contact| %>
+
+        <li>
+          <a href="/contact_info/<%= contact[:api_name] %>"><%= contact[:name] %></a>
+        </li>
+        <% end %>
+      </ul>
+    </span>
+  </end>
+
+  <div class="github">
+  </end>
+
+  <div class="dribbble">
+    <a href="<%= @dribbble_auth_url %>">Login with Dribbble!</a>
+
+    <p> You have <%= @dribbble_user_info["followers_count"] %> followers. </p>
+  </end>
+
+</end>
 
 

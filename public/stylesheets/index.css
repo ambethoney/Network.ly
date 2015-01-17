@@ -1,0 +1,52 @@
+body{
+  background-image: url("../images/networkly_cover_photo.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+h1,h2, a{
+  color:white;
+  font-family: 'Old Standard TT', serif;
+
+}
+
+h1{
+  font-size: 6em;
+
+}
+
+h2{
+  font-size: 2em;
+}
+
+a{
+  color:white;
+  text-decoration: none;
+}
+
+nav{
+  position: fixed;
+  top:.5em;
+}
+
+.user_login{
+  position: relative;
+  left:65em;
+}
+.linkedin_login{
+  position: relative;
+  top:2em;
+  right:10em;
+}
+
+.wrapper{
+  position: fixed;
+  top:40%;
+  left: 25%;
+}
+
+.description{
+  top:1em;
+  padding:2em;
+  left:2em;
+}

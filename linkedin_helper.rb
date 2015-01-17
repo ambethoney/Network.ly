@@ -33,18 +33,11 @@ module ProjectDashboard
           encodedUrl: URI.encode_www_form_component(url),
           api_name:   api_name
         }
-      end
-
-      # Retrieves:
-      # firstName
-      # headline
-      # lastName
-      # TODO: Figure out why email isn't included.
-    end
+      end #ends map contacts
+    end #ends get contacts
 
     def get_contact_info(access_token, api_name)
-      # TODO: linkedin api for specific user
-      # set request fields picture-url
+
       url        = "https://api.linkedin.com/v1/people/#{api_name}"
       req_fields = ":(picture-url,formatted-name,email-address,headline)"
       headers    = {"Authorization" => "Bearer #{access_token}"}
@@ -52,18 +45,38 @@ module ProjectDashboard
       request["person"]
     end
 
-    def messages
-      messages = HTTParty.post("https://api.linkedin.com/v1/people/~/mailbox",
-        :headers => {
-          "Authorization" => "Bearer #{session[:access_token]}"
-          }
-      )
-     session[:recipients] = " "
-     session[:person]     = " "
-     session[:path]       = " "
-     session[:subject]    = " "
-     session[:body]       = " "
-    end
+
+# def send_message(subject, body, recipient_paths)
+#         path = "/people/~/mailbox"
+
+#         message = {
+#             'subject' => subject,
+#             'body' => body,
+#             'recipients' => {
+#                 'values' => recipient_paths.map do |profile_path|
+#                   { 'person' => { '_path' => "/people/#{profile_path}" } }
+#                 end
+#             }
+#         }
+#         post(path, MultiJson.dump(message), "Content-Type" => "application/json")
+#       end
+
+
+
+
+
+    #   messages = HTTParty.post("https://api.linkedin.com/v1/people/~/mailbox",
+    #     :headers => {
+    #       "Authorization" => "Bearer #{session[:access_token]}"
+    #       "Accept"        => "application/json"
+    #       }
+    #   )
+    #  session[:recipients] = " "
+    #  session[:person]     = " "
+    #  session[:path]       = " "
+    #  session[:subject]    = " "
+    #  session[:body]       = " "
+    # end
 
     # def api_get_call(url,access_token)
     #   request = HTTParty.get(url, headers: {"Authorization" => "Bearer #{access_token}"})
