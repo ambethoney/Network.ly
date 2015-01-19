@@ -30,6 +30,7 @@ module ProjectDashboard
     get '/home' do
       # get user's contacts from LinkedIn API
       @contacts = get_contacts(session[:access_token])
+      @info = get_contact_info(session[:access_token],params[:name])
 
 
       # DRIBBBLE PARAMS
@@ -98,13 +99,7 @@ module ProjectDashboard
     # TODO: change to query params to handle request_rul
     get('/contact_info/:name') do
       @info = get_contact_info(session[:access_token],params[:name])
-
       render :erb, :contact, layout: :default
-    end
-
-    get '/message' do
-      @linkedin_message = send_messages(session[:access_token])
-      render :erb, :message, layout: :default
     end
 
     def authorize!

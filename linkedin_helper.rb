@@ -29,6 +29,7 @@ module ProjectDashboard
         api_name = url.split('/').last
         {
           name:       contact["firstName"] + " " + contact["lastName"],
+          headline:   contact["headline"],
           url:        url,
           encodedUrl: URI.encode_www_form_component(url),
           api_name:   api_name

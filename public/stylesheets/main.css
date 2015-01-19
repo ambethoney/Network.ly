@@ -12,8 +12,12 @@ a{
 
 li{
   list-style-type: none;
-  padding:.5em;
 }
+
+div, span{
+  vertical-align: top;
+}
+
 
 /*NAV BAR*/
 
@@ -54,6 +58,10 @@ li{
   right:40%;
 }
 
+.contacts_list li{
+  padding: .5em;
+}
+
 .view_button{
  box-shadow: 5px 5px 5px black;
  position: relative;
@@ -67,9 +75,71 @@ li{
   margin-top: 19%;
 }
 
+/*TRACKER STATS*/
+
+.tracker_stats{
+  position:relative;
+  left:50%;
+  margin-top:-7%;
+  margin-left: 35%;
+}
+
+
+/*GITHUB*/
+
+.github{
+  left:5%;
+  padding:2em;
+
+}
+
+.github img{
+  position: absolute;
+  width:4em;
+  height:4em;
+  left:30%;
+}
+
 /*DRIBBBLE*/
 
 .dribbble{
-  position: relative;
+  padding:2em;
+  left:5%;
+
+}
+
+.dribbble img{
+  position: absolute;
+  width:4em;
+  height:4em;
   left:55%;
 }
+
+
+/*CONTACTS PAGE*/
+
+/*MESSAGE PAGE*/
+
+.message_wrapper{
+  position: absolute;
+  width:90%;
+  top:5%;
+}
+
+.which_template{
+  position: relative;
+  margin-top:7%;
+  left:55%;
+}
+
+.which_template h2{
+  font-size: 2em;
+}
+
+.message_wrapper{
+  position: relative;
+  margin-top:7%;
+  left:15%;
+}
+
+

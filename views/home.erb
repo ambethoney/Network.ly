@@ -25,15 +25,19 @@
       </ul>
     </span>
   </end>
+<div class="tracker_stats">
+  <span class="github">
+    Login with GitHub!
+    <a href="<%= @github_auth_url %>"><img src="/images/octcat.png" alt="" class="github"></a>
+    <!-- <p> You have  followers. </p> -->
+  </span>
 
-  <div class="github">
-  </end>
-
-  <div class="dribbble">
-    <a href="<%= @dribbble_auth_url %>">Login with Dribbble!</a>
-
-    <p> You have <%= @dribbble_user_info["followers_count"] %> followers. </p>
-  </end>
+  <span class="dribbble">
+    Login with Dribbble!
+    <a href="<%= @dribbble_auth_url %>"><img src="/images/dribbble.png" alt="" class="dribbble"></a>
+    <!-- <p> You have <%= @dribbble_user_info["followers_count"] %> followers. </p> -->
+  </span>
+</div>
 
 </end>
 
