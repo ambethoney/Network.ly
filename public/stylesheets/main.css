@@ -1,5 +1,5 @@
 body{
-  background-color: white;
+  background-color: #FAFAFA;
 }
 
 h1, h2, h3, p, a{
@@ -8,6 +8,7 @@ h1, h2, h3, p, a{
 
 a{
   text-decoration: none;
+  color:black;
 }
 
 li{
@@ -23,12 +24,21 @@ div, span{
 
 .nav{
   position:fixed;
-  padding:1em;
 }
 
 .nav li{
-  position: relative;
+  position:relative;
   display: inline-block;
+  padding:1em;
+}
+
+.networkly{
+  top:1%;
+  left:1%;
+}
+
+.log_out{
+  right:20%;
 }
 
 /*CONTAINER*/
@@ -49,13 +59,28 @@ div, span{
   font-size: 3em;
 }
 
+.quote{
+  position:absolute;
+  width:70%;
+  left:15%;
+  top:45%;
+  line-height: 1.8em;
+  text-align: center;
+}
+
+.quote h3{
+  font-size: 1.2em;
+  font-style: italic;
+}
+
 
 /*CONTACTS LIST*/
 
 .contacts_list{
   position:relative;
-  top:55%;
-  right:40%;
+  margin-top:-6%;
+  left:10%;
+
 }
 
 .contacts_list li{
@@ -65,30 +90,30 @@ div, span{
 .view_button{
  box-shadow: 5px 5px 5px black;
  position: relative;
- margin-top:15%;
+ margin-top:19%;
  left:9%;
  padding:.5em;
 }
 
 .all_contacts{
   position: absolute;
-  margin-top: 19%;
+  margin-top: 22%;
 }
 
 /*TRACKER STATS*/
 
 .tracker_stats{
   position:relative;
-  left:50%;
-  margin-top:-7%;
-  margin-left: 35%;
+  left:;
+  margin-top:-2em;
+  margin-left: 38%;
 }
 
 
 /*GITHUB*/
 
 .github{
-  left:5%;
+  left:20%;
   padding:2em;
 
 }
@@ -97,14 +122,14 @@ div, span{
   position: absolute;
   width:4em;
   height:4em;
-  left:30%;
+  left:3%;
 }
 
 /*DRIBBBLE*/
 
 .dribbble{
   padding:2em;
-  left:5%;
+
 
 }
 
@@ -112,7 +137,7 @@ div, span{
   position: absolute;
   width:4em;
   height:4em;
-  left:55%;
+  left:29%;
 }
 
 

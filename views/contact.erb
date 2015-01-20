@@ -4,26 +4,31 @@
     <li><button><a href="/">Log Out</a></button></li>
   </ul>
 </nav>
+<div class="wrapper">
+  <img src="<%= @info["picture_url"] %>" alt="" class="thumbnail"/>
+  <span class="name"><h2><%= @info["formatted_name"] %></h2></span>
+  <span class="headline"><h4><%= @info["headline"] %></h4></span>
 
-<h2><%= @info["formatted_name"] %></h2>
-<img src="<%= @info["picture_url"] %>" class="contacts_pic" alt=""/>
-<h4><%= @info["headline"] %></h4>
+   <span class="which_template">
+      <h2> Need Help Starting Your Email?</h2>
+      <p>Choose from the following options for some helpful prompts:</p>
+    </span>
 
- <span class="which_template">
-    <h2> Need Help Starting Your Email?</h2>
-    <p>Choose from the following options for some helpful prompts:</p>
-  </span>
-    <select>
-      <option value=1>I Need A Favor</option>
-      <option value=2>I Need A Job</option>
-      <option value=3>Just Saying Hi!</option>
-    </select>
+    <span class="template_selection">
+      <select>
+        <option value=1>Choose A Template...</option>
+        <option value=2>I Need A Favor</option>
+        <option value=3>I Need A Job</option>
+        <option value=4>Just Saying Hi!</option>
+      </select>
+    </span>
 
-<div class="message_wrapper">
-  <form method="get">
-    <input type="textarea" name="subject" placeholder="subject" cols="20" rows="50" class="subject">
-    <textarea name="body" cols="100" rows="20" class="message" placeholder="Write Your Message Here!"></textarea>
-    <input type="submit" value="send">
-  </form>
+  <div class="message_wrapper">
+    <form method="get">
+      <textarea name="subject" placeholder="subject" cols="100" rows="5" class="subject"></textarea>
+      <textarea name="body" cols="100" rows="10" class="message" placeholder="Write Your Message Here!"></textarea>
+      <input type="submit" value="send" class="send">
+    </form>
+  </div>
 </div>
 

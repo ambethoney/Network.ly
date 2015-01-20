@@ -1,15 +1,18 @@
 
 <nav>
   <ul>
-    <li><h5>Network.ly</h5></li>
-    <li><button><a href="/">Log Out</a></button></li>
+    <li class="networkly"><h5>Network.ly</h5></li>
+    <li class="log_out"><button><a href="/">Log Out</a></button></li>
   </ul>
 </nav>
 
 <div class="container">
   <div class="welcome">
     <h1>Welcome Back, <%= session[:first_name] %>!</h1>
-  </end>
+  </div>
+  <span class="quote">
+    <h3>"You can make more friends in two months by becoming interested in other people than you can in two years by trying to get other people interested in you." <strong>-Dale Carnegie</strong></h3>
+  </span>
 
   <div class="contacts_list">
     <button class="view_button"> View Your Contacts </button>

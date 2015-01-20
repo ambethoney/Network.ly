@@ -99,7 +99,7 @@ module ProjectDashboard
     # TODO: change to query params to handle request_rul
     get('/contact_info/:name') do
       @info = get_contact_info(session[:access_token],params[:name])
-      render :erb, :contact, layout: :default
+      render :erb, :contact, layout: :contact_layout
     end
 
     def authorize!

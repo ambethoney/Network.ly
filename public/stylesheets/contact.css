@@ -1,5 +1,5 @@
 body{
-  background-color: white;
+  background-color: #FAFAFA;
 }
 
 h1, h2, h3, p, a{
@@ -12,5 +12,97 @@ a{
 
 li{
   list-style-type: none;
-  padding:.5em;
+}
+
+div, span{
+  vertical-align: top;
+}
+
+
+/*NAV BAR*/
+
+.nav{
+  position:fixed;
+}
+
+.nav li{
+  position:relative;
+  display: inline-block;
+  padding:1em;
+}
+
+.networkly{
+  top:1%;
+  left:1%;
+}
+
+.log_out{
+  right:20%;
+}
+
+/*Contact Information*/
+
+.wrapper{
+  position: absolute;
+  width:90%;
+}
+
+.name{
+  position: absolute;
+  top: 10%;
+  left:65%;
+}
+
+.thumbnail{
+  position: relative;
+  width:25%;
+  border-radius:100%;
+  margin: 0 auto;
+  left:15%;
+  border: 3px solid white;
+}
+
+.headline{
+  position: absolute;
+  top:15%;
+  left:65%;
+}
+
+/*EMAIL TEMPLATE WRAPPER*/
+
+.which_template{
+  position: absolute;
+  left:65%;
+  top:47%;
+}
+
+.template_selection{
+  position: absolute;
+  top:70%;
+  left:75%;
+}
+
+.message_wrapper{
+  position: relative;
+  margin-top:5%;
+}
+
+.subject{
+  position: absolute;
+  top:-8%;
+  left:5%;
+  }
+
+.message{
+  position: relative;
+  margin-top:10%;
+  left:5%;
+}
+
+.send{
+  position: absolute;
+  top:105%;
+  left:45%;
+  height:10%;
+  width:7%;
 }
