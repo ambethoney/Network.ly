@@ -13,6 +13,10 @@ module ProjectDashboard
       $redis = Redis.new
     end
 
+    configure :production do
+      $redis = Redis.new({url: ENV['REDISTOGO_URL']})
+    end
+
     get('/') do
       # LINKEDIN PARAMS
       linkedin_query_params = URI.encode_www_form({
