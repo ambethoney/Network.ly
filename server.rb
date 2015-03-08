@@ -33,9 +33,9 @@ module ProjectDashboard
       # get user's contacts from LinkedIn API
       @contacts = get_contacts(session[:access_token])
       @info = get_contact_info(session[:access_token],params[:name])
-      query_params = URI.encode_www_form :client_id => ENV["DRIBBBLE_OAUTH_ID"]
-      @dribbble_auth_url = "https://dribbble.com/oauth/authorize?" + query_params
-      @dribbble_user_info = dribbble_user_info
+      # query_params = URI.encode_www_form :client_id => ENV["DRIBBBLE_OAUTH_ID"]
+      # @dribbble_auth_url = "https://dribbble.com/oauth/authorize?" + query_params
+      # @dribbble_user_info = dribbble_user_info
       render :erb, :home, layout: :default
     end
 
