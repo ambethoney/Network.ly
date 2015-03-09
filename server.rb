@@ -23,7 +23,7 @@ module ProjectDashboard
         :response_type => "code",
         :client_id     =>  ENV["LINKEDIN_OAUTH_ID"],
         :state         => "DK8H7MSITBATCMT65839",
-        :redirect_uri  => "http://localhost:9292/linkedin/oauth_callback"
+        :redirect_uri  => "/linkedin/oauth_callback"
         })
       @linkedin_auth_url = "https://www.linkedin.com/uas/oauth2/authorization?" + linkedin_query_params
       render :erb, :index, layout: :index_layout
@@ -39,7 +39,7 @@ module ProjectDashboard
       # get user's contacts from LinkedIn API
       @contacts = get_contacts(session[:access_token])
       @info = get_contact_info(session[:access_token],params[:name])
-
+      binding.pry
       # get dribbble link
       query_params = URI.encode_www_form :client_id => ENV["DRIBBBLE_OAUTH_ID"]
       @dribbble_auth_url = "https://dribbble.com/oauth/authorize?" + query_params
@@ -80,12 +80,13 @@ module ProjectDashboard
         :headers => {"Accept" => "application/json"}
       )
 
-      session[:access_token] = response["access_token"]
-      session.merge! user_info(session[:access_token])
-      @dribbble_user_info = dribbble_user_info(session[:access_token])
+      session[:dribbble_access_token] = response["access_token"]
+      session.merge! user_info(session[:dribbble_access_token])
+      @dribbble_user_info = dribbble_user_info(session[:dribbble_access_token])
       redirect to('/home')
     end
 
+    #github oauth
     get("/oauth_callback") do
       response = HTTParty.post(
         "https://github.com/login/oauth/access_token",
@@ -99,8 +100,8 @@ module ProjectDashboard
         }
       )
       session[:access_token] = response["access_token"]
-      get_user_info
-      redirect to('/')
+      session.merge! user_info(session[:access_token])
+
     end
 
     get('/logout') do

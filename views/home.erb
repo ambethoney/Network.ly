@@ -38,11 +38,11 @@
   </span>
 
   <span class="dribbble">
-    <% if @api_name.nil? %>
+    <% if session[:dribbble_access_token].nil? %>
       Login with Dribbble!
       <a href="<%= @dribbble_auth_url %>"><img src="/images/dribbble.png" alt="" class="dribbble"></a>
     <% else %>
-      <p> You have <%=@dribbble_user_info["followers_count"] %> followers. </p>
+      <p> You have dribbble_user_info["followers_count"] %> followers. </p>
     <%end%>
   </span>
 </div>
