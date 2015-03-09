@@ -25,13 +25,3 @@ $('.send').on("click", function(e){
   console.log("send");
 })
 
-
-// Dribbble Ajax Call
-// $('.dribbble').on("click", function(e){
-//     $.ajax({
-//       url: 'https://dribbble.com/oauth/token',
-//       type: 'GET',
-//       dataType: 'json',
-
-//     })
-// })

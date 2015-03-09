@@ -1,9 +1,6 @@
 module ProjectDashboard
   module LinkedinHelper
 
-
-
-
     def user_info(access_token)
       response = HTTParty.get("https://api.linkedin.com/v1/people/~:(first-name,last-name,email-address)?format=json",
       :headers => {

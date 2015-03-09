@@ -20,10 +20,12 @@
       <h4 class="search">Search Contacts: </h4>
       <input type="text" name="contact-search" class="contact-search">
       <ul>
-        <% @contacts.each do |contact| %>
-        <li>
-          <img src="<%= contact[:picture_url] %>" alt="" class="thumbnail_contact"><a href="/contact_info/<%= contact[:api_name] %>"><strong><%= contact[:name] %></strong><br><%= contact[:headline] %></a>
-        </li>
+        <% if @contacts %>
+          <% @contacts.each do |contact| %>
+          <li>
+            <img src="<%= contact[:picture_url] %>" alt="" class="thumbnail_contact"><a href="/contact_info/<%= contact[:api_name] %>"><strong><%= contact[:name] %></strong><br><%= contact[:headline] %></a>
+          </li>
+          <% end %>
         <% end %>
       </ul>
     </div>
@@ -36,9 +38,12 @@
   </span>
 
   <span class="dribbble">
-    Login with Dribbble!
-    <a href="<%= @dribbble_auth_url %>"><img src="/images/dribbble.png" alt="" class="dribbble"></a>
-    <!-- <p> You have <\%= @dribbble_user_info["followers_count"] %> followers. </p> -->
+    <% if @api_name.nil? %>
+      Login with Dribbble!
+      <a href="<%= @dribbble_auth_url %>"><img src="/images/dribbble.png" alt="" class="dribbble"></a>
+    <% else %>
+      <p> You have <%=@dribbble_user_info["followers_count"] %> followers. </p>
+    <%end%>
   </span>
 </div>
 
