@@ -23,7 +23,7 @@ module ProjectDashboard
         :response_type => "code",
         :client_id     =>  ENV["LINKEDIN_OAUTH_ID"],
         :state         => "DK8H7MSITBATCMT65839",
-        :redirect_uri  => "http://localhost:9292/linkedin/oauth_callback"
+        :redirect_uri  => "/linkedin/oauth_callback"
         })
       @linkedin_auth_url = "https://www.linkedin.com/uas/oauth2/authorization?" + linkedin_query_params
       render :erb, :index, layout: :index_layout
