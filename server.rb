@@ -24,7 +24,7 @@ module ProjectDashboard
         :client_id     =>  ENV["LINKEDIN_OAUTH_ID"],
         :state         => "DK8H7MSITBATCMT65839",
         :redirect_uri  => "http://#{ENV['networkly_tld']}/linkedin/oauth_callback"
-        })
+      })
       @linkedin_auth_url = "https://www.linkedin.com/uas/oauth2/authorization?" + linkedin_query_params
       render :erb, :index, layout: :index_layout
     end
@@ -44,7 +44,7 @@ module ProjectDashboard
         :body => {
           :grant_type     => "authorization_code",
           :code           => params[:code],
-          :redirect_uri   => "http://localhost:9292/linkedin/oauth_callback",
+          :redirect_uri   => "http://#{ENV['networkly_tld']}/linkedin/oauth_callback",
           :client_id      => ENV["LINKEDIN_OAUTH_ID"],
           :client_secret  => ENV["LINKEDIN_OAUTH_SECRET"]
         },
@@ -65,7 +65,7 @@ module ProjectDashboard
           :code          => params[:code],
           :client_id     => ENV["DRIBBBLE_OAUTH_ID"],
           :client_secret => ENV["DRIBBBLE_OAUTH_SECRET"]
-          },
+        },
         :headers => {"Accept" => "application/json"}
       )
 
@@ -88,7 +88,7 @@ module ProjectDashboard
       $redis.hmset("contact:#{id}",
         "f_name", params["f_name"],
         "l_name", params["l_name"]
-        )
+      )
       $redis.lpush("contacts_list", id)
       redirect to '/home'
     end
