@@ -1,5 +1,6 @@
 console.log("linked");
 
+ //   View & Hide Contacts
 $('.view_button').on("click", function(e){
   e.preventDefault();
   $('li').css('display', 'block');
@@ -8,16 +9,29 @@ $('.view_button').on("click", function(e){
    $( this ).off( e );
 })
 
-$('.contact-search').keydown(function(event) {
+//   Search Contacts
+$('.contact-search').keydown(function(e) {
+  e.preventDefault();
   if (event.keyCode == 13) {
     var search = $('.contact-search').val();
-    if(search == search){
       return search;
-    }
   }
 })
 
+
+// Send Messages
 $('.send').on("click", function(e){
   e.preventDefault();
   console.log("send");
 })
+
+
+// Dribbble Ajax Call
+// $('.dribbble').on("click", function(e){
+//     $.ajax({
+//       url: 'https://dribbble.com/oauth/token',
+//       type: 'GET',
+//       dataType: 'json',
+
+//     })
+// })

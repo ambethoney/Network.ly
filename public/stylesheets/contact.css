@@ -36,8 +36,10 @@ div, span{
   left:1%;
 }
 
-.log_out{
-  right:20%;
+.log-out{
+ position: relative;
+  bottom: 30px;
+  left: 90%;
 }
 
 /*Contact Information*/
@@ -89,9 +91,9 @@ div, span{
 
 .subject{
   position: absolute;
-  top:-8%;
+  bottom:27%;
   left:5%;
-  }
+}
 
 .message{
   position: relative;
@@ -102,7 +104,7 @@ div, span{
 .send{
   position: absolute;
   top:105%;
-  left:45%;
+  left: 25%;
   height:10%;
   width:7%;
 }
