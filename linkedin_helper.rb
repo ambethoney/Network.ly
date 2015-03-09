@@ -28,11 +28,12 @@ module ProjectDashboard
         url = contact["apiStandardProfileRequest"]["url"]
         api_name = url.split('/').last
         {
-          name:       contact["firstName"] + " " + contact["lastName"],
-          headline:   contact["headline"],
-          url:        url,
-          encodedUrl: URI.encode_www_form_component(url),
-          api_name:   api_name
+          name:        contact["firstName"] + " " + contact["lastName"],
+          headline:    contact["headline"],
+          picture_url: contact["picture-url"],
+          url:         url,
+          encodedUrl:  URI.encode_www_form_component(url),
+          api_name:    api_name
         }
       end #ends map contacts
     end #ends get contacts
@@ -42,25 +43,25 @@ module ProjectDashboard
       url        = "https://api.linkedin.com/v1/people/#{api_name}"
       req_fields = ":(picture-url,formatted-name,email-address,headline)"
       headers    = {"Authorization" => "Bearer #{access_token}"}
-      request = HTTParty.get(url + req_fields, headers: headers)
+      request    = HTTParty.get(url + req_fields, headers: headers)
       request["person"]
     end
 
 
-# def send_message(subject, body, recipient_paths)
-#         path = "/people/~/mailbox"
+def send_message(subject, body, recipient_paths)
+        path = "/people/~/mailbox"
 
-#         message = {
-#             'subject' => subject,
-#             'body' => body,
-#             'recipients' => {
-#                 'values' => recipient_paths.map do |profile_path|
-#                   { 'person' => { '_path' => "/people/#{profile_path}" } }
-#                 end
-#             }
-#         }
-#         post(path, MultiJson.dump(message), "Content-Type" => "application/json")
-#       end
+        message = {
+            'subject' => subject,
+            'body' => body,
+            'recipients' => {
+                'values' => recipient_paths.map do |profile_path|
+                  { 'person' => { '_path' => "/people/#{profile_path}" } }
+                end
+            }
+        }
+        post(path, MultiJson.dump(message), "Content-Type" => "application/json")
+      end
 
 
 

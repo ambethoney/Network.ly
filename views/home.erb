@@ -2,7 +2,7 @@
 <nav>
   <ul>
     <li class="networkly"><h5>Network.ly</h5></li>
-    <li class="log_out"><button><a href="/">Log Out</a></button></li>
+    <li><button class="log-out"><a href="/">Log Out</a></button></li>
   </ul>
 </nav>
 
@@ -14,19 +14,21 @@
     <h3>"You can make more friends in two months by becoming interested in other people than you can in two years by trying to get other people interested in you." <strong>-Dale Carnegie</strong></h3>
   </span>
 
-  <div class="contacts_list">
+  <div class="contacts-list">
     <button class="view_button"> View Your Contacts </button>
-    <span class="all_contacts">
-      <h4>All Contacts: </h4>
+    <div class="all-contacts">
+      <h4 class="search">Search Contacts: </h4>
+      <input type="text" name="contact-search" class="contact-search">
       <ul>
-        <% @contacts.each do |contact| %>
-
-        <li>
-          <a href="/contact_info/<%= contact[:api_name] %>"><%= contact[:name] %></a>
-        </li>
+        <% if @contacts %>
+          <% @contacts.each do |contact| %>
+          <li>
+            <img src="<%= contact[:picture_url] %>" alt="" class="thumbnail_contact"><a href="/contact_info/<%= contact[:api_name] %>"><strong><%= contact[:name] %></strong><br><%= contact[:headline] %></a>
+          </li>
+          <% end %>
         <% end %>
       </ul>
-    </span>
+    </div>
   </end>
 <div class="tracker_stats">
   <span class="github">
@@ -36,9 +38,12 @@
   </span>
 
   <span class="dribbble">
-    Login with Dribbble!
-    <a href="<%= @dribbble_auth_url %>"><img src="/images/dribbble.png" alt="" class="dribbble"></a>
-    <!-- <p> You have <\%= @dribbble_user_info["followers_count"] %> followers. </p> -->
+    <% if session[:dribbble_access_token].nil? %>
+      Login with Dribbble!
+      <a href="<%= @dribbble_auth_url %>"><img src="/images/dribbble.png" alt="" class="dribbble"></a>
+    <% else %>
+      <p> You have dribbble_user_info["followers_count"] %> followers. </p>
+    <%end%>
   </span>
 </div>
 

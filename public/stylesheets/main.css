@@ -6,14 +6,6 @@ h1, h2, h3, p, a{
  font-family: 'Old Standard TT', serif;
 }
 
-a{
-  text-decoration: none;
-  color:black;
-}
-
-li{
-  list-style-type: none;
-}
 
 div, span{
   vertical-align: top;
@@ -76,15 +68,16 @@ div, span{
 
 /*CONTACTS LIST*/
 
-.contacts_list{
+.contacts-list{
   position:relative;
   margin-top:-6%;
   left:10%;
 
 }
 
-.contacts_list li{
+.contacts-list li{
   padding: .5em;
+  margin-top: 2px;
 }
 
 .view_button{
@@ -95,10 +88,39 @@ div, span{
  padding:.5em;
 }
 
-.all_contacts{
-  position: absolute;
-  margin-top: 22%;
+.search{
+  position: relative;
+  padding: 15px;
+  left:105px;
+  display: none;
 }
+
+.contact-search{
+  position: relative;
+  margin-top: -33px;
+  left:260px;
+  display: none;
+}
+
+.all-contacts{
+  position: absolute;
+  margin-top: 3%;
+  width: 40%;
+  height: 200%;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+a{
+  text-decoration: none;
+  color:black;
+}
+
+li{
+  list-style-type: none;
+  display: none;
+}
+
 
 /*TRACKER STATS*/
 
@@ -161,10 +183,22 @@ div, span{
   font-size: 2em;
 }
 
-.message_wrapper{
-  position: relative;
-  margin-top:7%;
-  left:15%;
+.subject {
+  position: absolute;
+  top: 60%;
+  left: 5%;
 }
 
+.message {
+  position: relative;
+  margin-top: 5%;
+  left: 5%;
+}
 
+.send {
+  position: absolute;
+  top: 105%;
+  left: 25%;
+  height: 10%;
+  width: 7%;
+}
