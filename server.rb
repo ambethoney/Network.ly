@@ -23,7 +23,7 @@ module ProjectDashboard
         :response_type => "code",
         :client_id     =>  ENV["LINKEDIN_OAUTH_ID"],
         :state         => "DK8H7MSITBATCMT65839",
-        :redirect_uri  => "http://#{ENV['networkly_tld']}/linkedin/oauth_callback"
+        :redirect_uri  => "http://#{ENV['NETWORKLY_TLD']}/linkedin/oauth_callback"
       })
       @linkedin_auth_url = "https://www.linkedin.com/uas/oauth2/authorization?" + linkedin_query_params
       render :erb, :index, layout: :index_layout
@@ -44,7 +44,7 @@ module ProjectDashboard
         :body => {
           :grant_type     => "authorization_code",
           :code           => params[:code],
-          :redirect_uri   => "http://#{ENV['networkly_tld']}/linkedin/oauth_callback",
+          :redirect_uri   => "http://#{ENV['NETWORKLY_TLD']}/linkedin/oauth_callback",
           :client_id      => ENV["LINKEDIN_OAUTH_ID"],
           :client_secret  => ENV["LINKEDIN_OAUTH_SECRET"]
         },
