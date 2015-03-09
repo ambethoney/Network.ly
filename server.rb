@@ -29,6 +29,12 @@ module ProjectDashboard
       render :erb, :index, layout: :index_layout
     end
 
+    def authorize!
+      if session[:name] != params[:username]
+        redirect to('/')
+      end
+    end
+
     get '/home' do
       # get user's contacts from LinkedIn API
       @contacts = get_contacts(session[:access_token])
@@ -99,11 +105,9 @@ module ProjectDashboard
       render :erb, :contact, layout: :contact_layout
     end
 
-    def authorize!
-      if session[:name] != params[:username]
-        redirect to('/')
-      end
+    post ('/v1/people/~/mailbox') do
     end
+
 
   end # Server
 end # ProjectDashboard

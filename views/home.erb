@@ -14,19 +14,19 @@
     <h3>"You can make more friends in two months by becoming interested in other people than you can in two years by trying to get other people interested in you." <strong>-Dale Carnegie</strong></h3>
   </span>
 
-  <div class="contacts_list">
+  <div class="contacts-list">
     <button class="view_button"> View Your Contacts </button>
-    <span class="all_contacts">
-      <h4>All Contacts: </h4>
+    <div class="all-contacts">
+      <h4 class="search">Search Contacts: </h4>
+      <input type="text" name="contact-search" class="contact-search">
       <ul>
         <% @contacts.each do |contact| %>
-
         <li>
-          <a href="/contact_info/<%= contact[:api_name] %>"><%= contact[:name] %></a>
+          <img src="<%= contact[:picture_url] %>" alt="" class="thumbnail_contact"><a href="/contact_info/<%= contact[:api_name] %>"><strong><%= contact[:name] %></strong><br><%= contact[:headline] %></a>
         </li>
         <% end %>
       </ul>
-    </span>
+    </div>
   </end>
 <div class="tracker_stats">
   <span class="github">
