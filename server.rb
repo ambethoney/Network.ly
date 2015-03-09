@@ -39,8 +39,14 @@ module ProjectDashboard
       # get user's contacts from LinkedIn API
       @contacts = get_contacts(session[:access_token])
       @info = get_contact_info(session[:access_token],params[:name])
+
+      # get dribbble link
       query_params = URI.encode_www_form :client_id => ENV["DRIBBBLE_OAUTH_ID"]
       @dribbble_auth_url = "https://dribbble.com/oauth/authorize?" + query_params
+
+      #get github link
+      query_params = URI.encode_www_form :client_id => ENV["GITHUB_OAUTH_ID"]
+      @github_auth_url = "https://github.com/login/oauth/authorize?" + query_params
       render :erb, :home, layout: :default
     end
 
@@ -80,6 +86,22 @@ module ProjectDashboard
       redirect to('/home')
     end
 
+    get("/oauth_callback") do
+      response = HTTParty.post(
+        "https://github.com/login/oauth/access_token",
+        :body => {
+          :code          => params[:code],
+          :client_id     => ENV["GITHUB_OAUTH_ID"],
+          :client_secret => ENV["GITHUB_OAUTH_SECRET"],
+        },
+        :headers => {
+          "Accept" => "application/json"
+        }
+      )
+      session[:access_token] = response["access_token"]
+      get_user_info
+      redirect to('/')
+    end
 
     get('/logout') do
       session[:name] = session[:access_token] = nil
