@@ -94,8 +94,7 @@ div, span{
   left:105px;
   display: none;
 }
-
-.contact-search{
+#contact-search{
   position: relative;
   margin-top: -33px;
   left:260px;

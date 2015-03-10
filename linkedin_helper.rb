@@ -35,7 +35,14 @@ module ProjectDashboard
           encodedUrl:  URI.encode_www_form_component(url),
           api_name:    api_name
         }
+
       end #ends map contacts
+
+      #push headlines into an array
+      # @contact_headlines = contacts.map do |job|
+      #   binding.pry
+      #   job["headline"]
+      # end #ends contacts-headlines
     end #ends get contacts
 
     def get_contact_info(access_token, api_name)
@@ -45,23 +52,24 @@ module ProjectDashboard
       headers    = {"Authorization" => "Bearer #{access_token}"}
       request    = HTTParty.get(url + req_fields, headers: headers)
       request["person"]
+
     end
 
 
-def send_message(subject, body, recipient_paths)
-        path = "/people/~/mailbox"
+# def send_message(subject, body, recipient_paths)
+#         path = "/people/~/mailbox"
 
-        message = {
-            'subject' => subject,
-            'body' => body,
-            'recipients' => {
-                'values' => recipient_paths.map do |profile_path|
-                  { 'person' => { '_path' => "/people/#{profile_path}" } }
-                end
-            }
-        }
-        post(path, MultiJson.dump(message), "Content-Type" => "application/json")
-      end
+#         message = {
+#             'subject' => subject,
+#             'body' => body,
+#             'recipients' => {
+#                 'values' => recipient_paths.map do |profile_path|
+#                   { 'person' => { '_path' => "/people/#{profile_path}" } }
+#                 end
+#             }
+#         }
+#         post(path, MultiJson.dump(message), "Content-Type" => "application/json")
+#       end
 
 
 

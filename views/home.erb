@@ -18,12 +18,12 @@
     <button class="view_button"> View Your Contacts </button>
     <div class="all-contacts">
       <h4 class="search">Search Contacts: </h4>
-      <input type="text" name="contact-search" class="contact-search">
+      <input type="text" name="contact-search" id="contact-search">
       <ul>
         <% if @contacts %>
           <% @contacts.each do |contact| %>
           <li>
-            <img src="<%= contact[:picture_url] %>" alt="" class="thumbnail_contact"><a href="/contact_info/<%= contact[:api_name] %>"><strong><%= contact[:name] %></strong><br><%= contact[:headline] %></a>
+            <img src="<%= contact[:picture_url] %>" alt="" class="thumbnail_contact"><a href="/contact_info/<%= contact[:api_name] %>"><strong><%= contact[:name] %></strong><br> <%= contact[:headline] %></a>
           </li>
           <% end %>
         <% end %>
