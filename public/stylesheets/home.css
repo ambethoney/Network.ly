@@ -1,0 +1,34 @@
+body{
+  background-color: #FAFAFA;
+}
+
+h1, h2, h3, p, a{
+ font-family: 'Old Standard TT', serif;
+}
+.container{
+  position: relative;
+  padding: 40px;
+  margin: 0;
+}
+
+.welcome{
+  position: relative;
+  text-align: center;
+}
+
+.quote{
+  margin: 30px auto;
+  width: 750px;
+  text-align: center;
+}
+@media (max-width: 780px) {
+  .quote{
+    width: 95%;
+  }
+ }
+
+.quote strong{
+  line-height: 25px;
+  font-size: 14px;
+  font-style: italic;
+}

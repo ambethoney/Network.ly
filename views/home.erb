@@ -1,20 +1,13 @@
 
-<nav>
-  <ul>
-    <li class="networkly"><h5>Network.ly</h5></li>
-    <li><button class="log-out"><a href="/">Log Out</a></button></li>
-  </ul>
-</nav>
-
 <div class="container">
   <div class="welcome">
     <h1>Welcome Back, <%= session[:first_name] %>!</h1>
+    <h3 class="quote">"You can make more friends in two months by becoming interested in other people than you can in two years by trying to get other people interested in you." <br/>
+      <strong>-Dale Carnegie</strong>
+    </h3>
   </div>
-  <span class="quote">
-    <h3>"You can make more friends in two months by becoming interested in other people than you can in two years by trying to get other people interested in you." <strong>-Dale Carnegie</strong></h3>
-  </span>
 
-  <div class="contacts-list">
+  <!-- <div class="contacts-list">
     <button class="view_button"> View Your Contacts </button>
     <div class="all-contacts">
       <h4 class="search">Search Contacts: </h4>
@@ -29,24 +22,22 @@
         <% end %>
       </ul>
     </div>
-  </end>
-<div class="tracker_stats">
-  <span class="github">
-    Login with GitHub!
-    <a href="<%= @github_auth_url %>"><img src="/images/octcat.png" alt="" class="github"></a>
+  </end> -->
+<!-- <div class="tracker_stats"> -->
+  <!-- <span class="github"> -->
+    <!-- Login with GitHub! -->
+    <!-- <a href="<%= @github_auth_url %>"><img src="/images/octcat.png" alt="" class="github"></a> -->
     <!-- <p> You have  followers. </p> -->
-  </span>
+  <!-- </span> -->
 
-  <span class="dribbble">
-    <% if session[:dribbble_access_token].nil? %>
-      Login with Dribbble!
-      <a href="<%= @dribbble_auth_url %>"><img src="/images/dribbble.png" alt="" class="dribbble"></a>
-    <% else %>
-      <p> You have dribbble_user_info["followers_count"] %> followers. </p>
-    <%end%>
-  </span>
-</div>
+  <!-- <span class="dribbble"> -->
+    <!-- <% if session[:dribbble_access_token].nil? %> -->
+      <!-- Login with Dribbble! -->
+      <!-- <a href="<%= @dribbble_auth_url %>"><img src="/images/dribbble.png" alt="" class="dribbble"></a> -->
+    <!-- <% else %> -->
+      <!-- <p> You have dribbble_user_info["followers_count"] %> followers. </p> -->
+    <!-- <%end%> -->
+  <!-- </span> -->
+<!-- </div> -->
 
 </end>
-
-

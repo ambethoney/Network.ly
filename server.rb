@@ -37,15 +37,15 @@ module ProjectDashboard
 
     get '/home' do
       # get user's contacts from LinkedIn API
-      @contacts = get_contacts(session[:access_token])
-      @info = get_contact_info(session[:access_token],params[:name])
-      # get dribbble link
-      query_params = URI.encode_www_form :client_id => ENV["DRIBBBLE_OAUTH_ID"]
-      @dribbble_auth_url = "https://dribbble.com/oauth/authorize?" + query_params
-
-      #get github link
-      query_params = URI.encode_www_form :client_id => ENV["GITHUB_OAUTH_ID"]
-      @github_auth_url = "https://github.com/login/oauth/authorize?" + query_params
+      # @contacts = get_contacts(session[:access_token])
+      # @info = get_contact_info(session[:access_token],params[:name])
+      # # get dribbble link
+      # query_params = URI.encode_www_form :client_id => ENV["DRIBBBLE_OAUTH_ID"]
+      # @dribbble_auth_url = "https://dribbble.com/oauth/authorize?" + query_params
+      #
+      # #get github link
+      # query_params = URI.encode_www_form :client_id => ENV["GITHUB_OAUTH_ID"]
+      # @github_auth_url = "https://github.com/login/oauth/authorize?" + query_params
       render :erb, :home, layout: :default
     end
 
@@ -133,4 +133,3 @@ module ProjectDashboard
 
   end # Server
 end # ProjectDashboard
-

@@ -1,6 +1,6 @@
 <nav>
 
-  <form method="GET" action="/login" class="user_login">
+  <form method="GET" action="/home" class="user_login">
     <label>
       <input type="name" name="name" placeholder="username">
     </label>
@@ -8,12 +8,12 @@
       <input type="password" name="password" placeholder="password">
     </label>
     <label>
-      <input type="submit" name="Submit">
+      <input type="submit" name="Submit" class="submit">
     </label>
-  <span class="linkedin_login">
-    <a href="<%= @linkedin_auth_url %>">Connect With LinkedIn</a>
-  </span>
   </form>
+  <!-- <div class="linkedin_login">
+    <a href="<%= @linkedin_auth_url %>">Connect With LinkedIn</a>
+  </div> -->
 </nav>
 <div class="wrapper">
   <span class="networkly">
@@ -23,4 +23,3 @@
     <h2> make meaningful connections with your contacts</h2>
   </span>
 </div>
-

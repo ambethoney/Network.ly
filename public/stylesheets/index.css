@@ -1,52 +1,41 @@
 body{
   background-image: url("../images/networkly_cover_photo.jpg");
   background-repeat: no-repeat;
-  background-size: 100%;
+  background-size: cover;
 }
 
-h1,h2, a{
-  color:white;
-  font-family: 'Old Standard TT', serif;
 
-}
-
-h1{
-  font-size: 8em;
-
-}
-
-h2{
-  font-size: 1.7em;
-}
-
-a{
-  color:white;
-  text-decoration: none;
-}
-
-nav{
-  position: fixed;
-  top:.5em;
-}
 
 .user_login{
-  position: relative;
-  left:65em;
+  position: absolute;;
+  right: 10px;
 }
 .linkedin_login{
-  position: relative;
-  top:2em;
-  right:10em;
-}
+  position: absolute;;
+  right: 10px;
+  top:50px;
 
+}
+.submit{
+  border-radius: 10px;
+  padding:10px 15px;
+  background-color:blue;
+  color:white;
+  border:none;
+  cursor: pointer;
+}
+.submit:hover{
+  background-color: white;
+  color:blue;
+}
 .wrapper{
-  position: fixed;
-  top:40%;
-  left: 25%;
+  position: relative;
+  margin: 0 auto;
+  top:30%;
+  text-align: center;
 }
 
 .description{
   top:1em;
-  padding:2em;
-  left:2em;
+  position: relative;
 }
